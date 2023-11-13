@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-segurity">
+
+
+<head th:replace = "/fragments/head :: head"> </head>
+
+    <body class="body_Login">
+      <nav th:replace = "/fragments/navlogin :: nav"></nav>
+
+  
+
+        <div class="text-center">
+
+            <h1>Inciar Sesion </h1>
+
+        </div>
+
+        <br>
+
+        <div class="container d-grid gap-2 col-6 mx-auto">
+
+            <form class="formulario" th:action="@{/logincheck}" method="POST">
+
+                <div th:if="${error != null}" id="div-error">
+                    <h4>Error</h4>
+                    <p th:text="${error}"></p>
+                </div>
+
+
+                <input type="email" name="email" placeholder="name@example.com" class="form-control" >
+
+                <br>
+
+                <input type="password" name="password" placeholder="Contraseña" class="form-control">
+
+        
+                <br>
+
+                <button type="submit" class="btn btn-success d-grid gap-2 mx-auto">iniciar sesion</button>
+
+            </form>
+        </div>
+
+     
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    
+    </body>
+
+    <footer th:replace = "/fragments/footer :: footer"> </footer>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace = "/fragments/head :: head"> </head>
+<body>
+  <nav th:replace = "/fragments/navlogin:: nav"></nav>
+<main class="mainPanel">
+
+<div class="conteiner_left" > 
+  <h1 class="titulo text-center">Noticias</h1><br/>
+  <table class="table tableAdmin">
+
+      <tr th:each="noticia : ${noticias}" >
+        <th th:text="${noticia.titulo}"></th>
+    
+    
+        <td scope="row" th:text="${noticia.id}"></td>
+      
+      
+        <td scope="row">
+          <a class="btn btn-primary" th:href="@{/Admin/noticia/__${noticia.id}__}">Ver Noticia</a> 
+          <a sec:authorize="hasRole('ADMIN')" class="btn btn-secondary" th:href="@{/Admin/EditarNoticia/__${noticia.id}__}">Editar</a> 
+          <a  sec:authorize="hasRole('ADMIN')" class="btn btn-danger " th:href="@{/Admin/EliminarNoticia/__${noticia.id}__}">Eliminar</a> </td>
+      </tr>
+  </table>
+</div>
+<div   sec:authorize="hasRole('PERIODISTA')" >
+    <h1 class="titulo text-center">Mis Noticias</h1><br/>
+    <table class="table tableAdmin">
+  
+        <tr th:each="noticia : ${MisNoticias}" >
+          <th th:text="${noticia.titulo}"></th>
+      
+      
+          <td scope="row" th:text="${noticia.id}"></td>
+        
+        
+          <td scope="row">
+            <a class="btn btn-primary" th:href="@{/Admin/noticia/__${noticia.id}__}">Ver Noticia</a> 
+            <a sec:authorize="hasRole('PERIODISTA')" class="btn btn-secondary" th:href="@{/Admin/EditarNoticia/__${noticia.id}__}">Editar</a> 
+            <a  sec:authorize="hasRole('ADMIN')" class="btn btn-danger " th:href="@{/Admin/EliminarNoticia/__${noticia.id}__}">Eliminar</a> </td>
+        </tr>
+    </table>
+    </div>
+<br>
+<br>
+<div sec:authorize="hasRole('ADMIN')">
+<h1 class="titulo text-center"> Todos los usuarios</h1><br/>
+<table class="table tableAdmin">
+
+  <tr   th:each="user : ${usuarios}" >
+    <th th:text="${user.nombre}"></th>
+
+    <td scope="row" th:text="${user.email}"></td>
+    <td scope="row" th:text="${user.id}"></td>
+    <td scope="row" th:text="${user.rol}"></td>
+    <td scope="row">
+      <td scope="row" >
+        <form  th:action="@{/Admin/modificarRoles/__${user.id}__}" method="post" class="roles">
+          
+          <select  sec:authorize="hasRole('ADMIN')" name="rol">
+              <option value="ADMIN" name="rol" th:selected="${user.rol == 'ADMIN'}">ADMIN</option>
+              <option value="USER" name="rol" th:selected="${user.rol == 'USER'}">USER</option>
+              <option value="PERIODISTA" name="rol" th:selected="${user.rol == 'PERIODISTA'}">PERIODISTA</option>
+          </select>
+          <button class="btn btn-secondary" type="submit">Cambiar rol</button>
+      </form>
+      </td>
+
+  </tr>
+</table>
+<div  sec:authorize="hasRole('ADMIN')" >
+  <h1 class="titulo text-center"> Todos los periodistas</h1><br/>
+  <table class="table tableAdmin">
+  
+    <tr  th:each="period : ${periodistas}" >
+      <th th:text="${period.nombre}"></th>
+  
+      <td scope="row" th:text="${period.email}"></td>
+      <td scope="row" th:text="${period.id}"></td>
+      <td scope="row" th:text="${period.rol}"></td>
+      <td scope="row" th:text="${period.misNoticias.length()}"></td>
+     <td scope="row" th:text="${period.sueldo}"></td>
+      <td scope="row">
+        <td scope="row" >
+          <form  th:action="@{/Admin/Sueldo/__${period.id}__}" method="post" class="sueldo">
+       
+            <button class="btn btn-secondary" type="submit">Cambiar rol</button>
+        </form>
+        </td>
+  
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
+</body>
+<footer th:replace = "/fragments/footer :: footer"></footer>
+</html>

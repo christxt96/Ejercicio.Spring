@@ -1,0 +1,112 @@
+.mainIndex {
+    display: flex;
+
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+ gap: 10px;
+
+ 
+}
+.card-button {
+    margin-top: auto;
+}
+
+/* Alinear el botón "Mas detalles" en el centro */
+.card-button .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    flex: 0 1 calc(33.33% - 10px); /* Ajusta según el número de tarjetas por fila */
+    margin-bottom: 20px;;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ocupar toda la altura de la tarjeta */
+}
+
+.card-title {
+    flex: 1; /* El título ocupa el espacio disponible */
+}
+
+.btn-primary {
+    margin-top: auto; /* Mueve el botón hacia la parte inferior */
+}
+
+.mainPanel {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+
+}
+
+.conteiner_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.conteiner_left h1 {
+    text-align: right;
+    font-size: 5rem;
+    font-family: fantasy;
+    padding-right: 200px;
+    text-shadow: 2px 2px 10px rgb(74, 74, 74);
+}
+
+.conteiner_rigt {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    padding: 20px;
+
+}
+
+.conteiner_rigt h1 {
+    text-align: right;
+    font-size: 5rem;
+    font-family: fantasy;
+    text-align: center;
+
+    text-shadow: 2px 2px 10px rgb(74, 74, 74);
+}
+
+.detalles {
+    display: flex;
+flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.detalles h1 {
+    text-align: center; }
+
+.detalles img {
+width: 50%;
+display: flex;
+justify-content: flex-start;
+vertical-align: none;
+}    
+.nombre{
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 60px;
+color: black;
+text-shadow: 2px 2px 10px grey;
+}
+.nombre span{
+    font-family: 'Alumni Sans Collegiate One', sans-serif;
+    font-size: 55px;
+    color: goldenrod;
+
+    -webkit-text-stroke: 0.5px rgb(20, 20, 20);
+}

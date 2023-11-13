@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-segurity">
+
+<head th:replace = "/fragments/head :: head"> </head>
+<body>
+  <nav th:replace = "/fragments/navlogin:: nav"></nav>
+
+    <form th:action="@{/EditarNoticia/__${noticia.id}__}" class="row g-3 d-flex align-items-center m-5" method="POST"  enctype="multipart/form-data">
+        <h1> Editar Noticia</h1>
+    <div class="mb-3">
+      <input type="text" hidden th:value="${noticia.id}" name="id">
+        <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+        <input type="text" th:value="${noticia.titulo}" class="form-control" name="titulo">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+        <input type="file" class="form-control" accept=".png, .jpg,.jpeg, .gif" name="file" id="imagen">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Cuerpo</label>
+        <textarea class="form-control" th:value="${noticia.cuerpo}" name="cuerpo" rows="3"></textarea>
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+      </div>
+    </form>
+
+</body>
+<footer th:replace = "/fragments/footer :: footer"></footer>
+</html>
